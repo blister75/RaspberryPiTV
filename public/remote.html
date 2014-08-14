@@ -56,7 +56,7 @@
 	
 	<script>	 
 		
-	  	var socket = io.connect('http://192.168.0.102:8080'); 
+	  	var socket = io.connect('/'); 
 	  //var socket = io.connect('http://raspberrypi.local:8080/');
 	    socket.on('connect', function(data){
 	  	socket.emit('remote');
@@ -111,21 +111,24 @@
 		$$(".r-container").swipeRight(function(){
 			socket.emit('controll',{action:"swipeRight"}); 
 		});
-		$$(".r-header").tap(function(){
+		$$(".r-container").swipeUp(function(){
+			socket.emit('controll',{action:"swipeUp"}); 
+		});
+		$$(".r-container").tap(function(){
 			socket.emit('controll',{action:"tap"}); 
 			$(".app-body").fadeToggle("fast", function () {});	
-			$.get('http://192.168.0.102:8080/omx/quit',function(data){
+			/*$.get('http://192.168.0.102:8080/omx/quit',function(data){
 				console.log(data);
-			});
+			});*/
 		});
 		$$(".app-body").tap(function(){
 			$.get('http://192.168.0.102:8080/omx/pause',function(data){
 				console.log(data);
 			});
 		});
-		$(".search input").change(function() {
+		/*$(".search input").change(function() {
 			Youtube.getVideo($(this).val(), socket);
-		 });
+		 });*/
 		 
 		 socket.on("loading", function(data){
 			 console.log(data);

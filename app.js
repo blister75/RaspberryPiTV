@@ -43,6 +43,7 @@ app.get('/play/:video_id', function (req, res) {
 
 //Socket.io Congfig
 io.set('log level', 1);
+io.set('port',app);
 
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
